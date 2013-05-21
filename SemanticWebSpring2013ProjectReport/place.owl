@@ -1,0 +1,932 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY place "file:////sdcard/jena/place.owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="file:////sdcard/jena/place.owl#"
+     xml:base="file:////sdcard/jena/place.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:place="file:////sdcard/jena/place.owl#">
+    <owl:Ontology rdf:about=""/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#has_action -->
+
+    <owl:ObjectProperty rdf:about="#has_action">
+        <rdfs:range rdf:resource="#Action"/>
+        <rdfs:domain rdf:resource="#Activity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#has_activity -->
+
+    <owl:ObjectProperty rdf:about="#has_activity">
+        <rdfs:range rdf:resource="#Activity"/>
+        <rdfs:domain rdf:resource="#Place"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#has_ambience -->
+
+    <owl:ObjectProperty rdf:about="#has_ambience">
+        <owl:inverseOf rdf:resource="#is_ambience_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#has_location -->
+
+    <owl:ObjectProperty rdf:about="#has_location">
+        <rdfs:range rdf:resource="#Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#has_participant -->
+
+    <owl:ObjectProperty rdf:about="#has_participant">
+        <rdfs:domain rdf:resource="#Activity"/>
+        <rdfs:range rdf:resource="#Principal"/>
+        <rdfs:range rdf:resource="#Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#has_sub_activity -->
+
+    <owl:ObjectProperty rdf:about="#has_sub_activity">
+        <rdfs:range rdf:resource="#Activity"/>
+        <rdfs:domain rdf:resource="#Activity"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#is_ambience_of -->
+
+    <owl:ObjectProperty rdf:about="#is_ambience_of">
+        <rdfs:domain rdf:resource="#Ambience"/>
+        <rdfs:range rdf:resource="#Place"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#is_performed_by -->
+
+    <owl:ObjectProperty rdf:about="#is_performed_by">
+        <rdfs:domain rdf:resource="#Activity"/>
+        <rdfs:range rdf:resource="#Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#occurs_at -->
+
+    <owl:ObjectProperty rdf:about="#occurs_at">
+        <rdfs:domain rdf:resource="#Activity"/>
+        <rdfs:range rdf:resource="#Place"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#occurs_when -->
+
+    <owl:ObjectProperty rdf:about="#occurs_when">
+        <rdfs:domain rdf:resource="#Action"/>
+        <rdfs:range rdf:resource="#Time"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#owns -->
+
+    <owl:ObjectProperty rdf:about="#owns">
+        <rdfs:range rdf:resource="#Device"/>
+        <rdfs:domain rdf:resource="#Principal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#part_of -->
+
+    <owl:ObjectProperty rdf:about="#part_of">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:domain rdf:resource="#Location"/>
+        <rdfs:range rdf:resource="#Location"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#performed_by -->
+
+    <owl:ObjectProperty rdf:about="#performed_by">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="#Action"/>
+        <rdfs:range rdf:resource="#Principal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Action -->
+
+    <owl:Class rdf:about="#Action">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Activity -->
+
+    <owl:Class rdf:about="#Activity">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Ambience -->
+
+    <owl:Class rdf:about="#Ambience">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Answer_Call -->
+
+    <owl:Class rdf:about="#Answer_Call">
+        <rdfs:subClassOf rdf:resource="#Phone_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Building -->
+
+    <owl:Class rdf:about="#Building">
+        <rdfs:subClassOf rdf:resource="#Location"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#part_of"/>
+                <owl:someValuesFrom rdf:resource="#County"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#CellPhone -->
+
+    <owl:Class rdf:about="#CellPhone">
+        <rdfs:subClassOf rdf:resource="#Device"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#City -->
+
+    <owl:Class rdf:about="#City">
+        <rdfs:subClassOf rdf:resource="#Location"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#County -->
+
+    <owl:Class rdf:about="#County">
+        <rdfs:subClassOf rdf:resource="#Location"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#part_of"/>
+                <owl:someValuesFrom rdf:resource="#City"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#City -->
+
+    <owl:Class rdf:about="#City">
+        <rdfs:subClassOf rdf:resource="#Location"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#part_of"/>
+                <owl:someValuesFrom rdf:resource="#State"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Delivering_Lecture -->
+
+    <owl:Class rdf:about="#Delivering_Lecture">
+        <rdfs:subClassOf rdf:resource="#Working"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_action"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#No_Phone_Ringer_Mode_Action"/>
+                            <rdf:Description rdf:about="#Silence_Phone"/>
+                            <rdf:Description rdf:about="#Vibrate_Phone"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_action"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Miss_Call"/>
+                            <rdf:Description rdf:about="#No_Phone_Action"/>
+                            <rdf:Description rdf:about="#Reject_Call"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is_performed_by"/>
+                <owl:someValuesFrom rdf:resource="#Teacher"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Device -->
+
+    <owl:Class rdf:about="#Device">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Instant -->
+
+    <owl:Class rdf:about="#Instant">
+        <rdfs:subClassOf rdf:resource="#Time"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Interval -->
+
+    <owl:Class rdf:about="#Interval">
+        <rdfs:subClassOf rdf:resource="#Time"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Lab_Meeting -->
+
+    <owl:Class rdf:about="#Lab_Meeting">
+        <rdfs:subClassOf rdf:resource="#Meeting"/>
+    </owl:Class>
+    
+	<owl:Class rdf:about="#Date">
+        <rdfs:subClassOf rdf:resource="#Meeting"/>
+    </owl:Class>
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Listening_To_Lecture -->
+
+    <owl:Class rdf:about="#Listening_To_Lecture">
+        <rdfs:subClassOf rdf:resource="#Working"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_action"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#No_Phone_Ringer_Mode_Action"/>
+                            <rdf:Description rdf:about="#Silence_Phone"/>
+                            <rdf:Description rdf:about="#Vibrate_Phone"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is_performed_by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Student"/>
+                            <rdf:Description rdf:about="#TeachingAssistant"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_action"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Miss_Call"/>
+                            <rdf:Description rdf:about="#No_Phone_Action"/>
+                            <rdf:Description rdf:about="#Reject_Call"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_action"/>
+                <owl:someValuesFrom rdf:resource="#Take_Notes"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Location -->
+
+    <owl:Class rdf:about="#Location">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Make_Call -->
+
+    <owl:Class rdf:about="#Make_Call">
+        <rdfs:subClassOf rdf:resource="#Phone_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Meeting -->
+
+    <owl:Class rdf:about="#Meeting">
+        <rdfs:subClassOf rdf:resource="#Working"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_participant"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Student"/>
+                            <rdf:Description rdf:about="#Teacher"/>
+                            <rdf:Description rdf:about="#TeachingAssistant"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is_performed_by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Student"/>
+                            <rdf:Description rdf:about="#TeachingAssistant"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Miss_Call -->
+
+    <owl:Class rdf:about="#Miss_Call">
+        <rdfs:subClassOf rdf:resource="#Phone_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#No_Phone_Action -->
+
+    <owl:Class rdf:about="#No_Phone_Action">
+        <rdfs:subClassOf rdf:resource="#Phone_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#No_Phone_Ringer_Mode_Action -->
+
+    <owl:Class rdf:about="#No_Phone_Ringer_Mode_Action">
+        <rdfs:subClassOf rdf:resource="#Phone_Ringer_Mode_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Noisy -->
+
+    <owl:Class rdf:about="#Noisy">
+        <rdfs:subClassOf rdf:resource="#Ambience"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Partying -->
+
+    <owl:Class rdf:about="#Partying">
+        <rdfs:subClassOf rdf:resource="#Activity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is_performed_by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Student"/>
+                            <rdf:Description rdf:about="#TeachingAssistant"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Person -->
+
+    <owl:Class rdf:about="#Person">
+        <rdfs:subClassOf rdf:resource="#Principal"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Phone_Action -->
+
+    <owl:Class rdf:about="#Phone_Action">
+        <rdfs:subClassOf rdf:resource="#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Phone_Ringer_Mode_Action -->
+
+    <owl:Class rdf:about="#Phone_Ringer_Mode_Action">
+        <rdfs:subClassOf rdf:resource="#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Place -->
+
+    <owl:Class rdf:about="#Place">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#PlatysThing -->
+
+    <owl:Class rdf:about="#PlatysThing">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Playing -->
+
+    <owl:Class rdf:about="#Playing">
+        <rdfs:subClassOf rdf:resource="#Activity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is_performed_by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Student"/>
+                            <rdf:Description rdf:about="#Teacher"/>
+                            <rdf:Description rdf:about="#TeachingAssistant"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Point -->
+
+    <owl:Class rdf:about="#Point">
+        <rdfs:subClassOf rdf:resource="#Location"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#part_of"/>
+                <owl:someValuesFrom rdf:resource="#Room"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Principal -->
+
+    <owl:Class rdf:about="#Principal">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Professor_Meeting -->
+
+    <owl:Class rdf:about="#Professor_Meeting">
+        <rdfs:subClassOf rdf:resource="#Meeting"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Project_Meeting -->
+
+    <owl:Class rdf:about="#Project_Meeting">
+        <rdfs:subClassOf rdf:resource="#Meeting"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Reading -->
+
+    <owl:Class rdf:about="#Reading">
+        <rdfs:subClassOf rdf:resource="#Studying"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Reject_Call -->
+
+    <owl:Class rdf:about="#Reject_Call">
+        <rdfs:subClassOf rdf:resource="#Phone_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Resource -->
+
+    <owl:Class rdf:about="#Resource">
+        <rdfs:subClassOf rdf:resource="#Principal"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Ring_Phone -->
+
+    <owl:Class rdf:about="#Ring_Phone">
+        <rdfs:subClassOf rdf:resource="#Phone_Ringer_Mode_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Role -->
+
+    <owl:Class rdf:about="#Role">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Room -->
+
+    <owl:Class rdf:about="#Room">
+        <rdfs:subClassOf rdf:resource="#Location"/>
+		<rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#part_of"/>
+                <owl:someValuesFrom rdf:resource="#Building"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Silence -->
+
+    <owl:Class rdf:about="#Silence">
+        <rdfs:subClassOf rdf:resource="#Ambience"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Silence_Phone -->
+
+    <owl:Class rdf:about="#Silence_Phone">
+        <rdfs:subClassOf rdf:resource="#Phone_Ringer_Mode_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#SingleSpeaker -->
+
+    <owl:Class rdf:about="#SingleSpeaker">
+        <rdfs:subClassOf rdf:resource="#Ambience"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Sleeping -->
+
+    <owl:Class rdf:about="#Sleeping">
+        <rdfs:subClassOf rdf:resource="#Activity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is_performed_by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Student"/>
+                            <rdf:Description rdf:about="#Teacher"/>
+                            <rdf:Description rdf:about="#TeachingAssistant"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Student -->
+
+    <owl:Class rdf:about="#Student">
+        <rdfs:subClassOf rdf:resource="#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Studying -->
+
+    <owl:Class rdf:about="#Studying">
+        <rdfs:subClassOf rdf:resource="#Working"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is_performed_by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Student"/>
+                            <rdf:Description rdf:about="#TeachingAssistant"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Take_Notes -->
+
+    <owl:Class rdf:about="#Take_Notes">
+        <rdfs:subClassOf rdf:resource="#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Teacher -->
+
+    <owl:Class rdf:about="#Teacher">
+        <rdfs:subClassOf rdf:resource="#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#TeachingAssistant -->
+
+    <owl:Class rdf:about="#TeachingAssistant">
+        <rdfs:subClassOf rdf:resource="#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Time -->
+
+    <owl:Class rdf:about="#Time">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Vibrate_Phone -->
+
+    <owl:Class rdf:about="#Vibrate_Phone">
+        <rdfs:subClassOf rdf:resource="#Phone_Ringer_Mode_Action"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Working -->
+
+    <owl:Class rdf:about="#Working">
+        <rdfs:subClassOf rdf:resource="#Activity"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#is_performed_by"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:unionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="#Student"/>
+                            <rdf:Description rdf:about="#Teacher"/>
+                            <rdf:Description rdf:about="#TeachingAssistant"/>
+                        </owl:unionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#Working_On_Project -->
+
+    <owl:Class rdf:about="#Working_On_Project">
+        <rdfs:subClassOf rdf:resource="#Studying"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#class -->
+
+    <owl:Class rdf:about="#class">
+        <rdfs:subClassOf rdf:resource="#Place"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_activity"/>
+                <owl:someValuesFrom rdf:resource="#Delivering_Lecture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_activity"/>
+                <owl:someValuesFrom rdf:resource="#Listening_To_Lecture"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#gym -->
+
+    <owl:Class rdf:about="#gym">
+        <rdfs:subClassOf rdf:resource="#Place"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_activity"/>
+                <owl:someValuesFrom rdf:resource="#Playing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#house -->
+
+    <owl:Class rdf:about="#house">
+        <rdfs:subClassOf rdf:resource="#Place"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_activity"/>
+                <owl:someValuesFrom rdf:resource="#Sleeping"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="#has_activity"/>
+                <owl:someValuesFrom rdf:resource="#Partying"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#lab -->
+
+    <owl:Class rdf:about="#lab">
+        <rdfs:subClassOf rdf:resource="#Place"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#library -->
+
+    <owl:Class rdf:about="#library">
+        <rdfs:subClassOf rdf:resource="#Place"/>
+    </owl:Class>
+    
+
+
+    <!-- file:////mnt/sdcard/UserAlice/place.owl#restaurant -->
+
+    <owl:Class rdf:about="#restaurant">
+        <rdfs:subClassOf rdf:resource="#Place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#Thing -->
+
+    <owl:Class rdf:about="&owl;Thing"/>
+    
+	  <!-- file:////mnt/sdcard/UserAlice/place.owl#Visibility -->
+
+    <owl:Class rdf:about="#Visibility">
+        <rdfs:subClassOf rdf:resource="#PlatysThing"/>
+    </owl:Class>
+    
+	 <owl:Class rdf:about="#Public">
+        <rdfs:subClassOf rdf:resource="#Visibility"/>
+    </owl:Class>
+	
+	 <owl:Class rdf:about="#SemiPublic">
+        <rdfs:subClassOf rdf:resource="#Public"/>
+    </owl:Class>
+	
+	 <owl:Class rdf:about="#Private">
+        <rdfs:subClassOf rdf:resource="#SemiPublic"/>
+    </owl:Class>
+	
+	 <owl:Class rdf:about="#SuperPrivate">
+        <rdfs:subClassOf rdf:resource="#Private"/>
+    </owl:Class>
+
+	 <!-- file:////mnt/sdcard/UserAlice/place.owl#has_visibility -->
+
+    <owl:ObjectProperty rdf:about="#has_visibility">
+        <rdfs:domain rdf:resource="#Activity"/>
+        <rdfs:range rdf:resource="#Visibility"/>
+    </owl:ObjectProperty>
+    
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Noisy"/>
+            <rdf:Description rdf:about="#Silence"/>
+            <rdf:Description rdf:about="#SingleSpeaker"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="#Answer_Call"/>
+            <rdf:Description rdf:about="#Make_Call"/>
+            <rdf:Description rdf:about="#Miss_Call"/>
+            <rdf:Description rdf:about="#No_Phone_Action"/>
+            <rdf:Description rdf:about="#Reject_Call"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+

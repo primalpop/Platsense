@@ -66,45 +66,15 @@ While policy based privacy management has its advantages, it does require the la
 \label{fig:hierarchy}
 \end{figure*}
 
-In this project we focus on the sub-solution of sensor selection to achieve energy efficiency. We show the architecture diagram of the COntext MANager miDDleware (COMANDD) for achieving the sub-goal. We extend a mobile ontology i.e. PlatMob \cite{ghosh2012privacy,ghosh2012ms} from our previous work to include the concept of a sensor on a device and represent a sensor's capability (the type of data it senses), accuracy level (precision of the sensor) and energy cost (the energy cost of the sensor) as seen in Figure \ref{fig:hierarchy}.
+In this project we focus on the sub-solution of sensor selection to achieve energy efficiency. We show the architecture diagram of the COntext MANager miDDleware (COMANDD) for the Middelware that is our ultimate goal. However, in this project we only focus on the creation of the Platsens ontology. In order to do this, we extend a mobile ontology i.e. PlatMob \cite{ghosh2012privacy,ghosh2012ms} from our previous work to include the concept of a sensor on a device and represent a sensor's capability (the type of data it senses), accuracy level (precision of the sensor) and energy cost (the energy cost of the sensor) as seen in Figure \ref{fig:hierarchy}.
   
 In our research we came up with a three-fold solution to this problem. We are focusing on a single part of this three-fold solution in this project. We extend the concepts of user activity and location notion defined in the Platys project to include the idea of a temporal activity expiration and dirty context information. Our approach to reducing energy costs is by reasoning about what context information is known, what additional information is needed, how accurate it must be and how to efficiently acquire it. We model the sensors and their data properties, accuracy levels and energy costs in a knowledge base supported by an ontology. We describe a method to manage privacy on smartphones in an energy efficient manner by selecting the best choice sensor for maintaining the user's context information. Sensor selection is done by COntext MANager miDDleware (COMANDD), which maintains a context model and answers queries about it. Context requests are served by capability matching, accuracy level matching and selection of lowest energy cost sensor for reporting context data. A context change detection function is used to decide when the context should be updated.
 
-The rest of the project report is organized as follows. Section 2 explains the three-fold energy efficiency solution design. Section 3 dives into the sub-solution of sensor selection and describes the ontology that allows us to select a sensor using an example rule. Section 4 describes the methodology used for the creation of the energy model and relative accuracy values of location sensors. Section 5 summarizes the related work from the literature. Section 6 summarizes the ongoing work and concludes the project. 
+The rest of the project report is organized as follows. Section 2 explains the previous work done. Section 3 briefly mentions the methodology used for the creation of the energy model and relative accuracy values of location sensors. Section 4 dives into the sub-solution of sensor selection and describes the ontology that allows us to select a sensor using an example query and we also describe how we are carrying out sensor selection and a generic energy solution. Section 5 concludes the report with a summary of our conclusions for the project and a description of the future work that we are targeting as part of this research. 
 
 \section{Previous Work}
-{\em Privacy management:} Our approach for privacy management differs from those in the literature \cite{conti2011crepe, sadeh2003mycampus, enck2010taintdroid} on context based privacy and security.  Using semantically rich policies and the user and user application context we undertake a reasoning method to decide the choice of either releasing or obfuscating the sensor/context data being shared with the application \cite{ghosh2012ms, ghosh2012privacy, palani2012infoflow}. We obtain rich context mapping between a location and its surroundings, the presence of people and devices, inferred activities and the roles people fill in them. All the facts are inferred by a model created by using a machine learning system trained on user data \cite{zavala2011mobile}. The context realized as a dynamic knowledge-base of RDF triples is grounded in an ontology expressed in the semantic web language OWL. All policies are encoded in form of SWRL \cite{horrocks2004swrl} rules and use conjunctions of facts in the context knowledge-base in their conditions. The rules control the sensor data flow from the Android framework to the requesting app. When policies necessitate protection of certain data flow form sensors to an app the data is obfuscated. Our ontology represents the concept of application provenance that is used in policies. The resulting system provides fine-grained, context-dependent control to sensitive user data \cite{ghosh2012ms}. 
+{\em Privacy management:} Our approach for privacy management differs from those in the literature \cite{conti2011crepe, sadeh2003mycampus, enck2010taintdroid} on context based privacy and security. Using semantically rich policies and the user and user application context we undertake a reasoning method to decide the choice of either releasing or obfuscating the sensor/context data being shared with the application \cite{ghosh2012ms, ghosh2012privacy, palani2012infoflow}. We obtain rich context mapping between a location and its surroundings, the presence of people and devices, inferred activities and the roles people fill in them. All the facts are inferred by a model created by using a machine learning system trained on user data \cite{zavala2011mobile}. The context realized as a dynamic knowledge-base of RDF triples is grounded in an ontology expressed in the semantic web language OWL. All policies are encoded in form of SWRL \cite{horrocks2004swrl} rules and use conjunctions of facts in the context knowledge-base in their conditions. The rules control the sensor data flow from the Android framework to the requesting app. When policies necessitate protection of certain data flow form sensors to an app the data is obfuscated. Our ontology represents the concept of application provenance that is used in policies. The resulting system provides fine-grained, context-dependent control to sensitive user data \cite{ghosh2012ms}. 
 
-{\em Energy efficiency:} Current work in the literature on the energy
-consumption study focuses on exact battery utilization of specific
-applications and also refers to tail energy issues
-\cite{pathak2011finegrainedenergy}, but has not dealt with creating an
-energy efficient context inference system that can be used for
-security.  In ongoing work we have carried out studies on Android
-smartphones to find out energy consumption pattern of individual
-sensors and their accuracy values. \cite{das2012energy}. We group
-sensors according to the type of data they sense. Android's developer
-documentation has a basic classification of the sensor categories
-\cite{android2013sesnors}, i.e. Motion, Position and Environment. The
-context data we are trying to infer or gather or pass includes a
-fourth category of sensors called Location. We utilize the
-localization capable components as sensors in this case.
-
-Acquisitional Context Engine (ACE) is a work done in energy efficient context inference. This work includes the notion of {\em Inference Caching} and {\em Context Correlation Mining}. In our current work we have adopted a unique approach of defining a function that would specify that the context is outdated and needs to be updated. Given an initial location and activity context, we use a function with inputs of activity length, current time and a low cost motion sensor like accelerometer to determine whether there was any change in context or not. Thus we avoid updating context altogether by using a low energy costing sensor and avoid the need to maintain a caching mechanism.
-
-\section{Ongoing Work}
-In this project we have provided a design of an energy efficient privacy management solution. We are in process of implementing the middleware for which we have provided the design here. Evaluation of the system poses to be a challenge. We plan to implement two separate systems with and without the context manager middleware and compare and contrast the results to evaluate our system for various privacy manager use cases.
-
-The research work done here is based on the data that can be successfully obtained using Android framework provided data. The best precision of data available through the framework is a one percent change in the battery level. Although the expected battery drain is linear. It may not be exactly linear. We are working on other phones and carrying out research by varying the parameters that affect accuracy and efficiency. We eventually intend to collect enough data to run a learning algorithm and generate a model file. When this model would be put on a phone it will be able to predict the energy consumption patterns of the phones components and adjust the model if necessary.
-
-In course of our research, we observed that frequent update to location context had a significant impact on the battery. GPS position fix although takes substantial time initially \cite{liu2012gps} but once obtained, provides high accuracy in location information. Wi-Fi, on the other hand, had relatively lower precision but got initial position fix faster at known Wi-Fi access point locations. We do take advantage of this trade-off of location precision versus energy measurements to optimize our energy efficiency algorithm. But we have not considered the time to obtain this fix with respect to energy consumption. We would like to study this aspect in the future. We have created the policy-based security mechanism in the Android framework \cite{ghosh2012ms, ghosh2012privacy} and have designed and partially implemented the energy efficient privacy framework. Evaluating this system, however remains to be done.
-
-\section{Platys Ontology Description}
-
-In order to make a system on a mobile, energy efficient and making selections of sensors to be based upon energy cost of individual sensors, it is first and foremost necessary to explore the energy consumption of individual components on a smartphone. Towards that goal we created an Android app capable of collecting data of current battery levels. The app records any change in battery levels along with the timestamps and stores the information on an external storage on the phone. We created a baseline for the bare bone Android system in airplane mode. This ensured that there was no network communication. We also ensured that no other apps were running on the system. Using Android programming constructs we ensured that the system was running only the operating system on its own and nothing else. We drained the battery out in this condition. Our technique thus provided us with battery consumption pattern which formed the baseline for our energy model.
-
-Creation of the energy model that was carried out included the task of selecting a component that we wanted to model. Selection was done for all possible sensors in each individual sensor group (mentioned in previous section). Once a component was selected we yet again used an Android app to run that component, refreshing the data obtained over small time intervals and storing the battery level changes, timestamps and the sensor data obtained. At present we have created models for location detection sensors. Figure \ref{fig:battery} shows the comparative battery drainage time for Wi-Fi, Network, GPS and the baseline system.
-  
 \begin{figure*}[tbh]
 \centering
 \includegraphics[width=0.9\textwidth]{Battery_Consumption_Pattern.png}
@@ -112,8 +82,17 @@ Creation of the energy model that was carried out included the task of selecting
 \label{fig:battery}
 \end{figure*}
 
-From the model we were able to calculate the average values of energy consumption of the sensors under test as follows:-
+{\em Energy efficiency:} Current work in the literature on the energy consumption study focuses on exact battery utilization of specific applications and also refers to tail energy issues \cite{pathak2011finegrainedenergy}, but has not dealt with creating an energy efficient context inference system that can be used for security.  In ongoing work we have carried out studies on Android smartphones to find out energy consumption pattern of individual
+sensors and their accuracy values. \cite{das2012energy}. We group sensors according to the type of data they sense. Android's developer documentation has a basic classification of the sensor categories \cite{android2013sesnors}, i.e. Motion, Position and Environment. The context data we are trying to infer or gather or pass includes a fourth category of sensors called Location. We utilize the localization capable components as sensors in this case.
 
+Acquisitional Context Engine (ACE) is a work done in energy efficient context inference. This work includes the notion of {\em Inference Caching} and {\em Context Correlation Mining}. In our current work we have adopted a unique approach of defining a function that would specify that the context is outdated and needs to be updated. Given an initial location and activity context, we use a function with inputs of activity length, current time and a low cost motion sensor like accelerometer to determine whether there was any change in context or not. Thus we avoid updating context altogether by using a low energy costing sensor and avoid the need to maintain a caching mechanism.
+
+\section{Energy Modeling work}
+In order to make a system on a mobile, energy efficient and making selections of sensors to be based upon energy cost of individual sensors, it is first and foremost necessary to explore the energy consumption of individual components on a smartphone. We did this energy modeling in our ongoing work \cite{das2012energy}. Towards that goal we created an Android app capable of collecting data of current battery levels. The app records any change in battery levels along with the timestamps and stores the information on an external storage on the phone. We created a baseline for the bare bone Android system in airplane mode. This ensured that there was no network communication. We also ensured that no other apps were running on the system. Using Android programming constructs we ensured that the system was running only the operating system on its own and nothing else. We drained the battery out in this condition. Our technique thus provided us with battery consumption pattern which formed the baseline for our energy model.
+
+Creation of the energy model that was carried out included the task of selecting a component that we wanted to model. Selection was done for all possible sensors in each individual sensor group (mentioned in previous section). Once a component was selected we yet again used an Android app to run that component, refreshing the data obtained over small time intervals and storing the battery level changes, timestamps and the sensor data obtained. At present we have created models for location detection sensors. Figure \ref{fig:battery} shows the comparative battery drainage time for Wi-Fi, Network, GPS and the baseline system.
+  
+From the model we were able to calculate the average values of energy consumption of the sensors under test as follows:-
 \begin{table}
 \centering
 \caption{Average energy consumption data for location sensors in an Android Google Galaxy Nexus phone}
@@ -137,16 +116,55 @@ The energy model data was incorporated into our extension of the place ontology 
 
 The other aspect of location sensors that we studied in our work was of location accuracy with respect to a baseline. We observed that although Wi-Fi consumed relatively low energy. It showed fairly accurate location results, given the assumption that we were able to connect to a Wi-Fi location and even if we are connected the Wi-Fi access point has been updated to the Wi-Fi hotspot databases. Network localization on other hand were highly inaccurate and unstable. The high energy cost associated with the network can be attributed to 3G data transmission energy cost. Figure \ref{fig:accuracy} shows the distance predicted, from the absolute location provided by GPS, for Wi-Fi and Network.
 
-\section{Conclusions}
+\section{Platsense Ontology}
+In general our solution approach is that on the mobile, apps make can make requests for various sensor data access. Our ``Privacy Management Module'' developed in previous work \cite{ghosh2012ms, ghosh2012privacy} requires context information to be updated frequently, creating energy cost issues. In our current work, we present a design of the COntext MANager miDDleware (COMANDD) that consists of four parts, as shown in Figure \ref{fig:middleware}:
+a context provider service, query engine, knowledge base with inference engine and context provisioning modules.
 
-\section{Future Work}
+In this solution we gather and store the latest context data sensed from various sensors on the phone, in a knowledge-base using the Context Provisioning Modules. This rich context data is classified into five sensing groups at present. Current Android documentation broadly defines three categories of sensors i.e. Motion, Environmental and Position. We have included the fourth and fifth categories of sensed context data named localizaion provided by the location sensors i.e. GPS, Wi-Fi and Cellular Network and Audio/Visual sensors.
+
+A sensor can be characterized by properties like what is the sensing capability of the sensor or how accurate a sensor is or how much power or energy does the sensor consume for sensing purposes. Such characteristics may be represented in the form of an ontology. We extend the ontology names PlatMob defined in our previous work \cite{ghosh2012ms,ghosh2012privacy} to represent the sensor characteristics. Our ontology includes classes for {\em Sensor}. A sensor always belongs to a single specific sensor group denoted by its sensing capability. A sensor has a predefined accuracy level. A sensor has an energy cost. The previous ontology had defined classes for {\em Device} with a sub class {\em Mobile}. We define the {\em Mobile} class as having a listOfSensors property that enlists all the sensors that are available on it. 
+
+In the platsense ontology we have defined the classes of sensors as per their sensing capability. Right now we have a limitation in this research as because there are not enough sensors available as an alternative in each individual group of sensors. Naturally we focused on the Location sensor group, with three alternatives for sensing a user's location this seems to be a logical option. Now let us assume a use case for explaining how this works. 
+
+\begin{figure*}[tbh]
+\centering
+\includegraphics[width=0.9\textwidth]{ontology.png}
+\caption{Location accuracy for 100 test instances}
+\label{fig:ontology}
+\end{figure*}
+
+The Context Provider Service runs in the background and it receives the requests as provided by the Privacy Management Module. The requests are for context data. The input specifies the category of context data required and the accuracy level requested. The Query Engine then makes a query to the knowledge-base for a matching context data with the accuracy level required.
+
+At this point the inference engine can take two separate solution paths. First, if the required accuracy for the context requires the highest possible level, it has to search for the most accurate context data in the knowledge-base or access the framework and provide the required data. Second, if the accuracy is lower than the accuracy level of multiple sensors from the sensor capability group then it again searches for the context data in the knowledge-base and if not found, queries the low cost sensor to provide the requested context data.
+
+{\em Use case: User at known activity with known expiration time}
+We are defining the concept of temporal expiration for activities. We say that an activity has a list of associated sensor data. The activity has an expiration time. In this case the user's activity is known and we also know the expiration time for the said activity. Then we are able to respond to a query for a best sensor given the input is a request for location data with low accuracy.
+
+\fbox{
+\parbox{\columnwidth}
+{
+\\
+SELECT Min(?sensor)\\
+WHERE\\
+?place hasActivity ?activity\\
+?activity hasExpirationTime System:time\\
+?activity hasSensor ?sensor\\
+?sensor hasAccuracy Platsense:low\\
+?sensor Platsense:type Platsense:Localization\\
+?sensor hasEnergyCost ?energyCost\\
+ORDER BY ?energyCost
+}
+}
+
+As we can see that we are taking into account the energy cost for a sensor and selecting the minimum value from a list of sensors ordered by the cost. The basic assumption, as always, is that the required sensor accuracy is low when the request comes in. Thus, by modifying the process of continuous context update to a low frequency context update system we achieve energy efficient sensing. 
+
+\section{Conclusion and Future Work}
 
 In this project we have provided a design of an energy efficient privacy management solution. We are in process of implementing the middleware for which we have provided the design here. Evaluation of the system poses to be a challenge. We plan to implement two separate systems with and without the context manager middleware and compare and contrast the results to evaluate our system for various privacy manager use cases.
 
 The research work done here is based on the data that can be successfully obtained using Android framework provided data. The best precision of data available through the framework is a one percent change in the battery level. Although the expected battery drain is linear. It may not be exactly linear. We are working on other phones and carrying out research by varying the parameters that affect accuracy and efficiency. We eventually intend to collect enough data to run a learning algorithm and generate a model file. When this model would be put on a phone it will be able to predict the energy consumption patterns of the phones components and adjust the model if necessary.
 
 In course of our research, we observed that frequent update to location context had a significant impact on the battery. GPS position fix although takes substantial time initially \cite{liu2012gps} but once obtained, provides high accuracy in location information. Wi-Fi, on the other hand, had relatively lower precision but got initial position fix faster at known Wi-Fi access point locations. We do take advantage of this trade-off of location precision versus energy measurements to optimize our energy efficiency algorithm. But we have not considered the time to obtain this fix with respect to energy consumption. We would like to study this aspect in the future. We have created the policy-based security mechanism in the Android framework \cite{ghosh2012ms, ghosh2012privacy} and have designed and partially implemented the energy efficient privacy framework. Evaluating this system, however remains to be done.
-
 
 \bibliographystyle{abbrv}
 \bibliography{final_report}

@@ -1513,7 +1513,7 @@ copies are not made or distributed for profit or commercial advantage and
 that copies bear this notice and the full citation on the first page. To
 copy otherwise, or republish, to post on servers or to redistribute to
 lists, requires prior specific permission and/or a fee.\\
-{\confname{UbiComp '13}}, Sep 8-Sep 12, 2013,  Zurich, Switzerland.\\
-Copyright 2013 ACM 978-1-4503-1770-2/13/09...\$10.00.}
+{\confname{UMBC Semantic Web Class Spring '13}}, Baltimore, MD, USA.\\
+Copyright 2013 UMBC.}
 
 % End of ubicomp2012.cls
