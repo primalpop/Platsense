@@ -3,5 +3,5 @@ ubicomp_LaTex/*
 *.aux
 *.log
 *.bbl
-*.gz
+*.syctex.gz
 *.blg
