@@ -96,6 +96,7 @@ From the model we were able to calculate the average values of energy consumptio
 \begin{table}
 \centering
 \caption{Average energy consumption data for location sensors in an Android Google Galaxy Nexus phone}
+
 \begin{tabular}{|c|l|} \hline
 Sensor&Average (mJ/s)\\ \hline
 Baseline Power Consumption&401.12\\ \hline
@@ -135,7 +136,7 @@ In the platsense ontology we have defined the classes of sensors as per their se
 
 The Context Provider Service runs in the background and it receives the requests as provided by the Privacy Management Module. The requests are for context data. The input specifies the category of context data required and the accuracy level requested. The Query Engine then makes a query to the knowledge-base for a matching context data with the accuracy level required.
 
-At this point the inference engine can take two separate solution paths. First, if the required accuracy for the context requires the highest possible level, it has to search for the most accurate context data in the knowledge-base or access the framework and provide the required data. Second, if the accuracy is lower than the accuracy level of multiple sensors from the sensor capability group then it again searches for the context data in the knowledge-base and if not found, queries the low cost sensor to provide the requested context data.
+At this point the inference engine can take two separate solution paths. First,  if the required accuracy for the context requires the highest possible level, it has to search for the most accurate context data in the knowledge-base or access the framework and provide the required data. Second, if the accuracy is lower than the accuracy level of multiple sensors from the sensor capability group then it again searches for the context data in the knowledge-base and if not found, queries the low cost sensor to provide the requested context data.
 
 {\em Use case: User at known activity with known expiration time}
 We are defining the concept of temporal expiration for activities. We say that an activity has a list of associated sensor data. The activity has an expiration time. In this case the user's activity is known and we also know the expiration time for the said activity. Then we are able to respond to a query for a best sensor given the input is a request for location data with low accuracy.
@@ -156,7 +157,60 @@ ORDER BY ?energyCost
 }
 }
 
-As we can see that we are taking into account the energy cost for a sensor and selecting the minimum value from a list of sensors ordered by the cost. The basic assumption, as always, is that the required sensor accuracy is low when the request comes in. Thus, by modifying the process of continuous context update to a low frequency context update system we achieve energy efficient sensing. 
+As we can see that we are taking into account the energy cost for a sensor and selecting the minimum value from a list of sensors ordered by the cost. The basic assumption, as always, is that the required sensor accuracy is low when the request comes in. Thus, by modifying the process of continuous context update to a low frequency context update system we achieve energy efficient sensing. As an alternative to using a SPARQL query we defined SWRL rules which do the same selection of sensors. The rules are as follows:-
+
+\fbox{
+\parbox{\columnwidth}
+{
+Rule 1: User has location ``UMBC'' and activity is ``InMeeting'' and Accuracy Level Required ``Low'' \rightarrow \\
+Use WiFi location updates\\
+
+has\_location(?place, ?location), \\
+has\_activity(?place, ?activity), \\
+Accuracy(?accuracy) \rightarrow \\
+hasSensor(?activity, ?sensor), \\
+hasAccuracy(?sensor, ?accuracy), \\
+hasEnergyCost(?sensor, ?energy)
+}
+}
+
+\fbox{
+\parbox{\columnwidth}
+{
+Rule 2: User has location ``Home'' and activity ``Sleeping'' and Accuracy Level Required ``Low'' \rightarrow \\
+Reuse the current context \\
+
+has\_location(?place, ?location),\\
+has\_activity(?place, ?activity), \\
+integer[\geq 0](?time),\\
+hasEndTime(?activity, ?time),\\
+Accuracy(?accuracy) \rightarrow \\
+hasContext(?user, ?context)
+}
+}
+
+\fbox{
+\parbox{\columnwidth}
+{
+Rule 3: User has location ``unknown'' and activity ``IsDriving'' and Accuracy Level Required ``High'' \rightarrow\\
+Use GPS location updates \\
+
+has\_activity(?place, ?activity), \\
+Accuracy(?accuracy) \rightarrow \\
+hasSensor(?activity, ?sensor), \\
+hasAccuracy(?sensor, ?accuracy), \\
+hasEnergyCost(?sensor, ?energy)
+}
+}
+
+\begin{figure*}[tbh]
+\centering
+\includegraphics[width=0.9\textwidth]{flow.png}
+\caption{Query flow from Privacy management to Context management}
+\label{fig:flow}
+\end{figure*}
+
+The query flow can be seen in Figure \ref{fig:flow}. This figure explains how the context data is searched and returned in case it is present, or else it is updated and stored in the knowledge base and then returned to the requester. This flow occurs when the request is for context information instead of sensor selection request.
 
 \section{Conclusion and Future Work}
 
