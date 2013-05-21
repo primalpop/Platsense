@@ -409,21 +409,6 @@
     <Declaration>
         <NamedIndividual IRI="#timestamp"/>
     </Declaration>
-    <EquivalentClasses>
-        <Class IRI="#Sensor"/>
-        <DataSomeValuesFrom>
-            <DataProperty IRI="#hasEnergyCost"/>
-            <DatatypeRestriction>
-                <Datatype abbreviatedIRI="xsd:int"/>
-                <FacetRestriction facet="&xsd;minInclusive">
-                    <Literal datatypeIRI="&xsd;integer">0</Literal>
-                </FacetRestriction>
-                <FacetRestriction facet="&xsd;maxExclusive">
-                    <Literal datatypeIRI="&xsd;integer">100</Literal>
-                </FacetRestriction>
-            </DatatypeRestriction>
-        </DataSomeValuesFrom>
-    </EquivalentClasses>
     <SubClassOf>
         <Class IRI="file:/C:/Users/Pramod/Documents/N3Files/place.owl#City"/>
         <ObjectSomeValuesFrom>
@@ -1156,6 +1141,7 @@
         <DataOneOf>
             <Literal datatypeIRI="&rdf;PlainLiteral">high</Literal>
             <Literal datatypeIRI="&rdf;PlainLiteral">low</Literal>
+            <Literal datatypeIRI="&rdf;PlainLiteral">medium</Literal>
         </DataOneOf>
     </DataPropertyRange>
     <DataPropertyRange>
