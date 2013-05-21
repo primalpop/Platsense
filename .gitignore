@@ -1,7 +1,7 @@
 ubicomp_LaTex/*
 *.out
-*.pdf
 *.aux
 *.log
-
-
+*.bbl
+*.gz
+*.blg
