@@ -29,6 +29,9 @@
         <Class IRI="#AACFile"/>
     </Declaration>
     <Declaration>
+        <Class IRI="#Accuracy"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="#App"/>
     </Declaration>
     <Declaration>
@@ -257,6 +260,9 @@
         <ObjectProperty IRI="#generatesMessage"/>
     </Declaration>
     <Declaration>
+        <ObjectProperty IRI="#hasAccuracy"/>
+    </Declaration>
+    <Declaration>
         <ObjectProperty IRI="#hasAppCategory"/>
     </Declaration>
     <Declaration>
@@ -356,9 +362,6 @@
         <ObjectProperty IRI="#usesDevice"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="#hasAccuracy"/>
-    </Declaration>
-    <Declaration>
         <DataProperty IRI="#hasEnergyCost"/>
     </Declaration>
     <Declaration>
@@ -377,7 +380,16 @@
         <NamedIndividual IRI="#GPS"/>
     </Declaration>
     <Declaration>
+        <NamedIndividual IRI="#High"/>
+    </Declaration>
+    <Declaration>
         <NamedIndividual IRI="#Iran"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Low"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Medium"/>
     </Declaration>
     <Declaration>
         <NamedIndividual IRI="#Network"/>
@@ -419,6 +431,10 @@
     <SubClassOf>
         <Class IRI="#AACFile"/>
         <Class IRI="#AudioFile"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Accuracy"/>
+        <Class IRI="#PlatMobile"/>
     </SubClassOf>
     <SubClassOf>
         <Class IRI="#App"/>
@@ -740,6 +756,18 @@
         <NamedIndividual IRI="#GPS"/>
     </ClassAssertion>
     <ClassAssertion>
+        <Class IRI="#Accuracy"/>
+        <NamedIndividual IRI="#High"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Accuracy"/>
+        <NamedIndividual IRI="#Low"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Accuracy"/>
+        <NamedIndividual IRI="#Medium"/>
+    </ClassAssertion>
+    <ClassAssertion>
         <Class IRI="#Localization"/>
         <NamedIndividual IRI="#Network"/>
     </ClassAssertion>
@@ -776,34 +804,34 @@
         <NamedIndividual IRI="#http://dbpedia.org/resource/Iran"/>
     </DifferentIndividuals>
     <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAccuracy"/>
+        <NamedIndividual IRI="#GPS"/>
+        <NamedIndividual IRI="#High"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAccuracy"/>
+        <NamedIndividual IRI="#Network"/>
+        <NamedIndividual IRI="#Low"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#hasAccuracy"/>
+        <NamedIndividual IRI="#WiFi"/>
+        <NamedIndividual IRI="#Medium"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
         <ObjectProperty IRI="#origin"/>
         <NamedIndividual IRI="#http://dbpedia.org/resource/Iran"/>
         <NamedIndividual IRI="#http://dbpedia.org/resource/Iran"/>
     </ObjectPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasAccuracy"/>
-        <NamedIndividual IRI="#GPS"/>
-        <Literal datatypeIRI="&xsd;string">high</Literal>
-    </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasEnergyCost"/>
         <NamedIndividual IRI="#GPS"/>
         <Literal datatypeIRI="&xsd;double">458.67</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
-        <DataProperty IRI="#hasAccuracy"/>
-        <NamedIndividual IRI="#Network"/>
-        <Literal datatypeIRI="&xsd;string">low</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
         <DataProperty IRI="#hasEnergyCost"/>
         <NamedIndividual IRI="#Network"/>
         <Literal datatypeIRI="&xsd;double">453.67</Literal>
-    </DataPropertyAssertion>
-    <DataPropertyAssertion>
-        <DataProperty IRI="#hasAccuracy"/>
-        <NamedIndividual IRI="#WiFi"/>
-        <Literal datatypeIRI="&xsd;string">medium</Literal>
     </DataPropertyAssertion>
     <DataPropertyAssertion>
         <DataProperty IRI="#hasEnergyCost"/>
@@ -845,6 +873,10 @@
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#generatesMessage"/>
         <Class IRI="#Event"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasAccuracy"/>
+        <Class IRI="#Sensor"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
         <ObjectProperty IRI="#hasAppCategory"/>
@@ -971,6 +1003,10 @@
         <Class IRI="#Message"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
+        <ObjectProperty IRI="#hasAccuracy"/>
+        <Class IRI="#Accuracy"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
         <ObjectProperty IRI="#hasAppCategory"/>
         <Class IRI="#AppCategory"/>
     </ObjectPropertyRange>
@@ -1071,15 +1107,8 @@
         <Class IRI="#Mobile"/>
     </ObjectPropertyRange>
     <FunctionalDataProperty>
-        <DataProperty IRI="#hasAccuracy"/>
-    </FunctionalDataProperty>
-    <FunctionalDataProperty>
         <DataProperty IRI="#hasEnergyCost"/>
     </FunctionalDataProperty>
-    <DataPropertyDomain>
-        <DataProperty IRI="#hasAccuracy"/>
-        <Class IRI="#Sensor"/>
-    </DataPropertyDomain>
     <DataPropertyDomain>
         <DataProperty IRI="#hasEnergyCost"/>
         <Class IRI="#Sensor"/>
@@ -1132,18 +1161,6 @@
         <DataProperty IRI="#numeric_value"/>
         <Class IRI="#RatingCount"/>
     </DataPropertyDomain>
-    <DataPropertyRange>
-        <DataProperty IRI="#hasAccuracy"/>
-        <Datatype abbreviatedIRI="xsd:string"/>
-    </DataPropertyRange>
-    <DataPropertyRange>
-        <DataProperty IRI="#hasAccuracy"/>
-        <DataOneOf>
-            <Literal datatypeIRI="&rdf;PlainLiteral">high</Literal>
-            <Literal datatypeIRI="&rdf;PlainLiteral">low</Literal>
-            <Literal datatypeIRI="&rdf;PlainLiteral">medium</Literal>
-        </DataOneOf>
-    </DataPropertyRange>
     <DataPropertyRange>
         <DataProperty IRI="#hasEnergyCost"/>
         <Datatype abbreviatedIRI="xsd:double"/>

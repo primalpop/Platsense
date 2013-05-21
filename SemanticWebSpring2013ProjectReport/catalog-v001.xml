@@ -2,7 +2,7 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <uri id="User Entered Import Resolution" name="file:///C:/Users/Pramod/Documents/N3Files/place.owl" uri="place.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1369094991308" name="file:////sdcard/jena/place.owl" uri="place.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1369094991308" name="http://www.semanticweb.org/ontologies/2012/4/MobileOntology.owl" uri="PlatSense.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1369104227982" name="file:////sdcard/jena/place.owl" uri="place.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1369104227982" name="http://www.semanticweb.org/ontologies/2012/4/MobileOntology.owl" uri="PlatSense.owl"/>
     </group>
 </catalog>
