@@ -17,11 +17,11 @@ breaklinks=true, }
 
 \begin{document}
 % to make various LaTeX processors do the right thing with page size
-\special{projectsize=8.5in,11in}
-\setlength{\projectheight}{11in}
-\setlength{\projectwidth}{8.5in}
-\setlength{\pdfpageheight}{\projectheight}
-\setlength{\pdfpagewidth}{\projectwidth}
+%\special{projectsize=8.5in,11in}
+%\setlength{\projectheight}{11in}
+%\setlength{\projectwidth}{8.5in}
+%\setlength{\pdfpageheight}{\projectheight}
+%\setlength{\pdfpagewidth}{\projectwidth}
 
 % use this command to override the default ACM copyright statement
 % (e.g. for preprints). Remove for camera ready copy.
@@ -62,13 +62,13 @@ While policy based privacy management has its advantages, it does require the la
 \begin{figure*}[tbh]
 \centering
 \includegraphics[width=0.9\textwidth]{Sensor_Class_Hierarchy.png}
-\caption{Shows the sensor class hierarchy that we are trying to define using the ontology}
+\caption{Shows the sensor class hierarchy that we are defining using the ontology}
 \label{fig:hierarchy}
 \end{figure*}
 
 In this project we focus on the sub-solution of sensor selection to achieve energy efficiency. We show the architecture diagram of the COntext MANager miDDleware (COMANDD) for the Middelware that is our ultimate goal. However, in this project we only focus on the creation of the Platsens ontology. In order to do this, we extend a mobile ontology i.e. PlatMob \cite{ghosh2012privacy,ghosh2012ms} from our previous work to include the concept of a sensor on a device and represent a sensor's capability (the type of data it senses), accuracy level (precision of the sensor) and energy cost (the energy cost of the sensor) as seen in Figure \ref{fig:hierarchy}.
   
-In our research we came up with a three-fold solution to this problem. We are focusing on a single part of this three-fold solution in this project. We extend the concepts of user activity and location notion defined in the Platys project to include the idea of a temporal activity expiration and dirty context information. Our approach to reducing energy costs is by reasoning about what context information is known, what additional information is needed, how accurate it must be and how to efficiently acquire it. We model the sensors and their data properties, accuracy levels and energy costs in a knowledge base supported by an ontology. We describe a method to manage privacy on smartphones in an energy efficient manner by selecting the best choice sensor for maintaining the user's context information. Sensor selection is done by COntext MANager miDDleware (COMANDD), which maintains a context model and answers queries about it. Context requests are served by capability matching, accuracy level matching and selection of lowest energy cost sensor for reporting context data. A context change detection function is used to decide when the context should be updated.
+In our research we came up with a three-fold solution to this problem. We are focusing on a single part of this three-fold solution in this project. We extend the concepts of user activity and location notion defined in the Platys project to include the idea of a temporal activity expiration and dirty context information. Our approach to reducing energy costs is by reasoning about what context information is known, what additional information is needed, how accurate it must be and how to efficiently acquire it. We model the sensors and their data properties, accuracy levels and energy costs in a knowledge base supported by an ontology. We describe a method to manage privacy on smartphones in an energy efficient manner by selecting the best choice sensor for maintaining the user's context information. Sensor selection is done by COntext MANager miDDleware (COMANDD), which maintains a context model and answers queries about it. Context requests are served by capability matching, accuracy level matching and selection of lowest energy cost sensor for reporting context data. A context change detection function is used to decide when the context should be updated, which is based on the acitivity expiration time.
 
 The rest of the project report is organized as follows. Section 2 explains the previous work done. Section 3 briefly mentions the methodology used for the creation of the energy model and relative accuracy values of location sensors. Section 4 dives into the sub-solution of sensor selection and describes the ontology that allows us to select a sensor using an example query and we also describe how we are carrying out sensor selection and a generic energy solution. Section 5 concludes the report with a summary of our conclusions for the project and a description of the future work that we are targeting as part of this research. 
 
@@ -85,7 +85,7 @@ The rest of the project report is organized as follows. Section 2 explains the p
 {\em Energy efficiency:} Current work in the literature on the energy consumption study focuses on exact battery utilization of specific applications and also refers to tail energy issues \cite{pathak2011finegrainedenergy}, but has not dealt with creating an energy efficient context inference system that can be used for security.  In ongoing work we have carried out studies on Android smartphones to find out energy consumption pattern of individual
 sensors and their accuracy values. \cite{das2012energy}. We group sensors according to the type of data they sense. Android's developer documentation has a basic classification of the sensor categories \cite{android2013sesnors}, i.e. Motion, Position and Environment. The context data we are trying to infer or gather or pass includes a fourth category of sensors called Location. We utilize the localization capable components as sensors in this case.
 
-Acquisitional Context Engine (ACE) is a work done in energy efficient context inference. This work includes the notion of {\em Inference Caching} and {\em Context Correlation Mining}. In our current work we have adopted a unique approach of defining a function that would specify that the context is outdated and needs to be updated. Given an initial location and activity context, we use a function with inputs of activity length, current time and a low cost motion sensor like accelerometer to determine whether there was any change in context or not. Thus we avoid updating context altogether by using a low energy costing sensor and avoid the need to maintain a caching mechanism.
+Acquisitional Context Engine (ACE) is a work done in energy efficient context inference. This work includes the notion of {\em Inference Caching} and {\em Context Correlation Mining}. In our current work we have adopted a unique approach of defining a function that would specify that the context is outdated and needs to be updated. Given an initial location and activity context, we use a function with inputs of activity expiration time, current time. Thus we avoid updating context altogether by using a low energy costing sensor and using a activity based caching mechanism.
 
 \section{Energy Modeling work}
 In order to make a system on a mobile, energy efficient and making selections of sensors to be based upon energy cost of individual sensors, it is first and foremost necessary to explore the energy consumption of individual components on a smartphone. We did this energy modeling in our ongoing work \cite{das2012energy}. Towards that goal we created an Android app capable of collecting data of current battery levels. The app records any change in battery levels along with the timestamps and stores the information on an external storage on the phone. We created a baseline for the bare bone Android system in airplane mode. This ensured that there was no network communication. We also ensured that no other apps were running on the system. Using Android programming constructs we ensured that the system was running only the operating system on its own and nothing else. We drained the battery out in this condition. Our technique thus provided us with battery consumption pattern which formed the baseline for our energy model.
